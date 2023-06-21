@@ -7,7 +7,7 @@ jobs:
   - job: Build
     displayName: 'Build Job'
     pool:
-      name: 'YourSelfHostedAgentPoolName'
+      name: smahapool
     
     steps:
       - script: echo "Running build process on self-hosted agent"
