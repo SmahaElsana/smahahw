@@ -12,7 +12,20 @@ jobs:
       - checkout: self
 
       - script: |
-          echo "i got here smaha"
-          az login --service-principal --username smaha --password mamaBaba279 --tenant 0e6efad9-caef-45e7-9a2f-cc14d82ece6b
-          az deployment group create --resource-group smaha-hw --template-uri https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.json --parameters https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.parameters.json
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+        displayName: 'Install Azure CLI'
+
+      - task: AzureCLI@2
+        displayName: 'Azure Login'
+        inputs:
+          azureSubscription: 1
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            echo "i got here smaha"
+            az login --service-principal --username smaha --password mamaBaba279 --tenant 0e6efad9-caef-45e7-9a2f-cc14d82ece6b
+            az deployment group create --resource-group smaha-hw --template-uri https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.json --parameters https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.parameters.json
+            az account set --subscription 13e19292-1bdf-455b-bb42-ff0b0473dc2c
+
+      - script: |
+          az deployment group create --resource-group myresourcegroup --template-uri https://raw.githubusercontent.com/YourGitHubAccount/YourRepo/main/template.json --parameters https://raw.githubusercontent.com/YourGitHubAccount/YourRepo/main/parameters.json
         displayName: 'Deploy ARM Template'
