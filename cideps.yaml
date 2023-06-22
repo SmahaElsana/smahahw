@@ -1,14 +1,7 @@
-trigger:
-  branches:
-    include:
-      - main
+pool:
+  name: smahapool
 
-jobs:
-  - job: DeployStorageAccount
-    displayName: 'Deploy Azure Storage Account'
-    pool:
-      name: YourSelfHostedAgentPool
-      
+steps:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.x'
@@ -19,9 +12,11 @@ jobs:
       pip install azure-cli
 
   - script: |
+      echo "want to deploy"
       $clientId = "442398b9-681a-4843-821f-95ac554535da"
       $clientSecret = "dxE8Q~DiM~mZmylAU~MGBcxjq.5Q_XWXIEtEOdwx"
       $tenant = "0e6efad9-caef-45e7-9a2f-cc14d82ece6b"
       # Authenticate and create the service connection
       az login --service-principal -u $clientId -p $clientSecret --tenant $tenantId
       echo "smaha im done"
+    displayName: 'Create Azure DevOps Service Connection and Deploy ARM Template'
