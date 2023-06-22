@@ -1,15 +1,16 @@
 pool:
   name: smahapool
+
 steps:
 - task: AzureResourceManagerTemplateDeployment@3
-inputs:
-  deploymentScope: 'Resource Group'
-  azureResourceManagerConnection: 'smahacon'
-  subscriptionId: '13e19292-1bdf-455b-bb42-ff0b0473dc2c'
-  action: 'Create Or Update Resource Group'
-  resourceGroupName: 'smaha-hw'
-  location: 'East US'
-  templateLocation: 'URL of the file'
-  csmFileLink: 'https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.json'
-  csmParametersFileLink: 'https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.parameters.json'
-  deploymentMode: 'Incremental'
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'smahacon'
+    subscriptionId: '13e19292-1bdf-455b-bb42-ff0b0473dc2c'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'smaha-hw'
+    location: 'East US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.json'
+    csmParametersFileLink: 'https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.parameters.json'
+    deploymentMode: 'Incremental'
