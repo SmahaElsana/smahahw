@@ -6,7 +6,7 @@
     "variables": {},
     "resources": [
         {
-            "name": "[toLower('smahawinvm')]",
+            "name": "[toLower('smahawinvm1')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2021-04-01",
             "location": "[resourceGroup().location]",
@@ -122,7 +122,7 @@
             "apiVersion": "2021-03-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', toLower('smahawinvm'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', toLower('smahawinvm1'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', 'windowsVM1-NetworkInterface')]"
             ],
             "tags": {
@@ -160,7 +160,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', toLower('smahawinvm'))).primaryEndpoints.blob]"
+                        "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', toLower('smahawinvm1'))).primaryEndpoints.blob]"
                     }
                 }
             }
