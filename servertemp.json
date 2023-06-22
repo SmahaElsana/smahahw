@@ -134,8 +134,8 @@
                 },
                 "osProfile": {
                     "computerName": "myWinVm",
-                    "adminUsername": "adminUsername",
-                    "adminPassword": "adminPassword"
+                    "adminUsername": "smahaAdmin",
+                    "adminPassword": "smahaAdmin123"
                 },
                 "storageProfile": {
                     "imageReference": {
