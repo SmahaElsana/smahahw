@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccount1Name": {
-            "value": "smahastorage1" 
+            "value": "smahastorage11" 
         },
         "storageAccount2Name": {
-            "value": "smahastorage2" 
+            "value": "smahastorage21" 
         }
     }
 }
