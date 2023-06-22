@@ -11,6 +11,6 @@ steps:
     resourceGroupName: 'smaha-hw'
     location: 'East US'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.json'
-    csmParametersFileLink: 'https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.parameters.json'
+    csmFileLink: 'https://raw.githubusercontent.com/SmahaElsana/smahahw/master/azuredeploy.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/SmahaElsana/smahahw/master/azuredeploy.parameters.json'
     deploymentMode: 'Incremental'
