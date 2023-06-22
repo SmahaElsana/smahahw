@@ -18,18 +18,18 @@ jobs:
           targetType: 'inline'
           script: |
             # Authenticate with Azure using email and password
-            $email = smaha.elsana@outlook.com
-            $password = ConvertTo-SecureString mamaBaba279 -AsPlainText -Force
+            $email = 'smaha.elsana@outlook.com'
+            $password = ConvertTo-SecureString 'mamaBaba279' -AsPlainText -Force
             $credentials = New-Object System.Management.Automation.PSCredential($email, $password)
             Connect-AzAccount -Credential $credentials
 
             # Create resource group
-            $resourceGroupName = smahagrp
+            $resourceGroupName = 'smahagrp'
             $location = eastus
             New-AzResourceGroup -Name $resourceGroupName -Location $location
 
             # Create storage account
-            $storageAccountName = fmlsmaha
+            $storageAccountName = 'fmlsmaha'
             $sku = 'Standard_LRS'
             $storageAccount = New-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName -SkuName $sku -Location $location
 
