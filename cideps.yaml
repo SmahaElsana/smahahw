@@ -4,20 +4,35 @@ trigger:
       - main
 
 jobs:
-  - job: DeployARMTemplate
-    displayName: 'Deploy ARM Template'
-    pool: smahapool
+  - job: DeployStorageAccount
+    displayName: 'Deploy Azure Storage Account'
+    pool:
+      name: smahapool
 
     steps:
       - checkout: self
 
-      - task: AzureResourceManagerTemplateDeployment@3
-        displayName: 'Deploy ARM Template'
+      - task: PowerShell@2
+        displayName: 'Deploy Storage Account'
         inputs:
-          deploymentScope: 'Resource Group'
-          azureResourceManagerConnection: 1
-          subscriptionId: 13e19292-1bdf-455b-bb42-ff0b0473dc2c
-          resourceGroupName: smaha-hw
-          templateLocation: https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.json
-          csmFileURL: https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.json
-          csmParametersFileURL: https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.parameters.json
+          targetType: 'inline'
+          script: |
+            # Authenticate with Azure using email and password
+            $email = smaha.elsana@outlook.com
+            $password = ConvertTo-SecureString mamaBaba279 -AsPlainText -Force
+            $credentials = New-Object System.Management.Automation.PSCredential($email, $password)
+            Connect-AzAccount -Credential $credentials
+
+            # Create resource group
+            $resourceGroupName = smahagrp
+            $location = eastus
+            New-AzResourceGroup -Name $resourceGroupName -Location $location
+
+            # Create storage account
+            $storageAccountName = fmlsmaha
+            $sku = 'Standard_LRS'
+            $storageAccount = New-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName -SkuName $sku -Location $location
+
+            Write-Output "Storage account created: $($storageAccount.Name)"
+
+            # Add any additional steps or configurations as needed
