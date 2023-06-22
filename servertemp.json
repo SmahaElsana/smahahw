@@ -11,7 +11,7 @@
             "apiVersion": "2021-04-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "displayName": "windowsVM1 Storage Account"
+                "displayName": "myWinVm Storage Account"
             },
             "sku": {
                 "name": "Standard_LRS"
@@ -19,7 +19,7 @@
             "kind": "Storage"
         },
         {
-            "name": "windowsVM1-PublicIP",
+            "name": "myWinVm-PublicIP",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2020-11-01",
             "location": "[resourceGroup().location]",
@@ -29,12 +29,12 @@
             "properties": {
                 "publicIPAllocationMethod": "Dynamic",
                 "dnsSettings": {
-                    "domainNameLabel": "[toLower('windowsVM1')]"
+                    "domainNameLabel": "[toLower('myWinVm')]"
                 }
             }
         },
         {
-            "name": "windowsVM1-nsg",
+            "name": "myWinVm-nsg",
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2020-11-01",
             "location": "[resourceGroup().location]",
@@ -58,15 +58,15 @@
             }
         },
         {
-            "name": "windowsVM1-VirtualNetwork",
+            "name": "myWinVm-VirtualNetwork",
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2020-11-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', 'windowsVM1-nsg')]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', 'myWinVm-nsg')]"
             ],
             "tags": {
-                "displayName": "windowsVM1-VirtualNetwork"
+                "displayName": "myWinVm-VirtualNetwork"
             },
             "properties": {
                 "addressSpace": {
@@ -76,11 +76,11 @@
                 },
                 "subnets": [
                     {
-                        "name": "windowsVM1-VirtualNetwork-Subnet",
+                        "name": "myWinVm-VirtualNetwork-Subnet",
                         "properties": {
                             "addressPrefix": "10.0.0.0/24",
                             "networkSecurityGroup": {
-                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'windowsVM1-nsg')]"
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'myWinVm-nsg')]"
                             }
                         }
                     }
@@ -88,16 +88,16 @@
             }
         },
         {
-            "name": "windowsVM1-NetworkInterface",
+            "name": "myWinVm-NetworkInterface",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2020-11-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', 'windowsVM1-PublicIP')]",
-                "[resourceId('Microsoft.Network/virtualNetworks', 'windowsVM1-VirtualNetwork')]"
+                "[resourceId('Microsoft.Network/publicIPAddresses', 'myWinVm-PublicIP')]",
+                "[resourceId('Microsoft.Network/virtualNetworks', 'myWinVm-VirtualNetwork')]"
             ],
             "tags": {
-                "displayName": "windowsVM1 Network Interface"
+                "displayName": "myWinVm Network Interface"
             },
             "properties": {
                 "ipConfigurations": [
@@ -106,10 +106,10 @@
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'windowsVM1-PublicIP')]"
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'myWinVm-PublicIP')]"
                             },
                             "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', 'windowsVM1-VirtualNetwork', 'windowsVM1-VirtualNetwork-Subnet')]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', 'myWinVm-VirtualNetwork', 'myWinVm-VirtualNetwork-Subnet')]"
                             }
                         }
                     }
@@ -117,23 +117,23 @@
             }
         },
         {
-            "name": "windowsVM1",
+            "name": "myWinVm",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2021-03-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', toLower('smahawinvm1'))]",
-                "[resourceId('Microsoft.Network/networkInterfaces', 'windowsVM1-NetworkInterface')]"
+                "[resourceId('Microsoft.Network/networkInterfaces', 'myWinVm-NetworkInterface')]"
             ],
             "tags": {
-                "displayName": "windowsVM1"
+                "displayName": "myWinVm"
             },
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "Standard_A2_v2"
                 },
                 "osProfile": {
-                    "computerName": "windowsVM1",
+                    "computerName": "myWinVm",
                     "adminUsername": "adminUsername",
                     "adminPassword": "adminPassword"
                 },
@@ -145,7 +145,7 @@
                         "version": "latest"
                     },
                     "osDisk": {
-                        "name": "windowsVM1OSDisk",
+                        "name": "myWinVmOSDisk",
                         "caching": "ReadWrite",
                         "createOption": "FromImage"
                     }
@@ -153,7 +153,7 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', 'windowsVM1-NetworkInterface')]"
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', 'myWinVm-NetworkInterface')]"
                         }
                     ]
                 },
