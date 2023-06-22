@@ -1,13 +1,15 @@
 pool:
   name: smahapool
-
 steps:
-  - script: |
-      echo "want to deploy"
-      $clientId = "442398b9-681a-4843-821f-95ac554535da"
-      $clientSecret = "dxE8Q~DiM~mZmylAU~MGBcxjq.5Q_XWXIEtEOdwx"
-      $tenant = "0e6efad9-caef-45e7-9a2f-cc14d82ece6b"
-      # Authenticate and create the service connection
-      az login --service-principal -u $clientId -p $clientSecret --tenant $tenantId
-      echo "smaha im done"
-    displayName: 'Create Azure DevOps Service Connection and Deploy ARM Template'
+  - task: AzureResourceManagerTemplateDeployment@3
+inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'smahacon'
+    subscriptionId: '13e19292-1bdf-455b-bb42-ff0b0473dc2c'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'smaha-hw'
+    location: 'East US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.json'
+    csmParametersFileLink: 'https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.parameters.json'
+    deploymentMode: 'Incremental'
