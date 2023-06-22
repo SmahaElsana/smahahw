@@ -4,11 +4,15 @@ trigger:
       - main
 
 jobs:
-  - job: Build
-    displayName: 'Build Job'
-    pool:
-      name: smahapool
-    
+  - job: DeployARMTemplate
+    displayName: 'Deploy ARM Template'
+    pool: smahapool
+
     steps:
-      - script: echo "Running build process on self-hosted agent"
-        displayName: 'Build Step'
+      - checkout: self
+
+      - script: |
+          echo "i got here smaha"
+          az login --service-principal --username smaha --password mamaBaba279 --tenant 0e6efad9-caef-45e7-9a2f-cc14d82ece6b
+          az deployment group create --resource-group smaha-hw --template-uri https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.json
+        displayName: 'Deploy ARM Template'

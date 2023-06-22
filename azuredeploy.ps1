@@ -10,4 +10,4 @@ New-AzResourceGroupDeployment
 -TemplateParameterFile $parameterFile
 
 
-New-AzResourceGroupDeployment -ResourceGroupName smaha-hw -TemplateFile C:\Users\smaha\azure\azuredeploy.json
+New-AzResourceGroupDeployment -ResourceGroupName smaha-hw -TemplateFile C:\Users\smaha\azure\azuredeploy.json --parameters https://github.com/SmahaElsana/smahahw/blob/master/azuredeploy.parameters.json
