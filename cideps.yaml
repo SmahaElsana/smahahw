@@ -2,15 +2,6 @@ pool:
   name: smahapool
 
 steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.x'
-      addToPath: true
-
-  - script: |
-      python -m pip install --upgrade pip
-      pip install azure-cli
-
   - script: |
       echo "want to deploy"
       $clientId = "442398b9-681a-4843-821f-95ac554535da"
