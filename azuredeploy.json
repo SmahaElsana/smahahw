@@ -13,6 +13,18 @@
             "metadata": {
                 "description": "name of second storage account"
             }
+        },
+        "container1Name": {
+            "type": "string",
+            "metadata": {
+                "description": "name of container in storage account1"
+            }
+        },
+        "container2Name": {
+            "type": "string",
+            "metadata": {
+                "description": "name of container in storage account2"
+            }
         }
     },
     "functions": [],
@@ -54,6 +66,21 @@
         "dependsOn": [
             "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccount1Name'))]"
         ],
+        "properties": {
+            "publicAccess": "Container"
+        }
+    },
+    {
+        "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+        "apiVersion": "2022-09-01",
+        "name": "[concat(parameters('storageAccount2Name'), '/default/', parameters('container2Name'))]",
+        "dependsOn": [
+            "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccount2Name'))]"
+        ],
+        "properties": {
+            "publicAccess": "Container"
+        }
+
     }
     ],
     "outputs": {}
