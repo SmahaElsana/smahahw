@@ -27,7 +27,7 @@
             "displayName": "storageAccount1Name"
         },
         "location": "[resourceGroup().location]",
-        "kind": "BlobStorage",
+        "kind": "StorageV2",
         "sku": {
             "name": "Premium_LRS",
             "tier": "Premium"
@@ -41,7 +41,7 @@
             "displayName": "storageAccount2Name"
         },
         "location": "[resourceGroup().location]",
-        "kind": "BlobStorage",
+        "kind": "StorageV2",
         "sku": {
             "name": "Premium_LRS",
             "tier": "Premium"
