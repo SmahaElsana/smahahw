@@ -7,6 +7,12 @@
         },
         "storageAccount2Name": {
             "value": "smahastorage2111" 
-        }
+        },
+        "container1Name": {
+            "value": "smahacontainer1"
+        },
+        "container2Name": {
+            "value": "smahacontainer2"
+        }   
     }
 }

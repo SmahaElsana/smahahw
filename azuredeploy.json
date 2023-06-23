@@ -46,6 +46,14 @@
             "name": "Premium_LRS",
             "tier": "Premium"
         }
+    },
+    {
+        "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+        "apiVersion": "2022-09-01",
+        "name": "[concat(parameters('storageAccount1Name'), '/default/', parameters('container1Name'))]",
+        "dependsOn": [
+            "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccount1Name'))]"
+        ],
     }
     ],
     "outputs": {}
