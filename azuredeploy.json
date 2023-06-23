@@ -13,18 +13,6 @@
             "metadata": {
                 "description": "name of second storage account"
             }
-        },
-        "container1Name": {
-            "type": "string",
-            "metadata": {
-                "description": "name of container in storage account1"
-            }
-        },
-        "container2Name": {
-            "type": "string",
-            "metadata": {
-                "description": "name of container in storage account2"
-            }
         }
     },
     "functions": [],
