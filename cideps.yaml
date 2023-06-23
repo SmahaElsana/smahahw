@@ -13,7 +13,7 @@ steps:
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/SmahaElsana/smahahw/master/azuredeploy.json'
     csmParametersFileLink: 'https://raw.githubusercontent.com/SmahaElsana/smahahw/master/azuredeploy.parameters.json'
-    deploymentMode: 'Complete'
+    deploymentMode: 'incremental'
 
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
@@ -25,4 +25,4 @@ steps:
     location: 'East US'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/SmahaElsana/smahahw/master/servertemp.json'
-    deploymentMode: 'Complete'
+    deploymentMode: 'incremental'
