@@ -13,6 +13,12 @@
             "metadata": {
                 "description": "name of second storage account"
             }
+        },
+         "container1": {
+            "type": "string",
+            "metadata": {
+                "description": "name of second storage account"
+            }
         }
     },
     "functions": [],
@@ -48,7 +54,7 @@
         }
     },
     {
-        "name": "[concat(parameters('storageAccount1Name'), '/default/blobContainerName')]",
+        "name": "[concat(parameters('storageAccount1Name'), '/default/',parameters('container1'))]",
         "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
         "apiVersion": "2021-04-01",
         "dependsOn": [
