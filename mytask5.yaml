@@ -2,11 +2,13 @@ pool:
   name: smahapool
 
 steps:
- 
-- task: AzureFileCopy@5
+- task: AzureCLI@2
+  displayName: 'Create and Upload Text File to Azure Blob'
   inputs:
-    sourcePath: 'C:\\Users\\smaha\\OneDrive\\Pictures\\pic'
     azureSubscription: 'smahacon'
-    destination: 'AzureBlob'
-    storage: 'smahastorage1111'
-    containerName: 'container1'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      # Create a text file
+      echo 'Hello, World!' > mytextfile.txt
+
