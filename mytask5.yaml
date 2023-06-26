@@ -20,7 +20,7 @@ steps:
       azureSubscription: 'smahacon'
       scriptLocation: 'inlineScript'
       inlineScript: |
-        az storage container create --name container1 --account-name smahastorage1111 --account-key amgY8vqarqsLxK8o27Jbu7CIptQpuKW3y0GEu/vQk8ptJn+fI3acxoEqmIiSZ0ljmbnnPmBrVACd+AStRpArxQ==
+        az storage container create --name container12 --account-name smahastorage1111 --account-key amgY8vqarqsLxK8o27Jbu7CIptQpuKW3y0GEu/vQk8ptJn+fI3acxoEqmIiSZ0ljmbnnPmBrVACd+AStRpArxQ==
 
   - task: AzureCLI@2
     displayName: 'Upload Blob'
@@ -28,4 +28,4 @@ steps:
       azureSubscription: 'smahacon'
       scriptLocation: 'inlineScript'
       inlineScript: |
-        az storage blob upload --container-name container1 --name myblob --type block --account-name smahastorage1111 --account-key amgY8vqarqsLxK8o27Jbu7CIptQpuKW3y0GEu/vQk8ptJn+fI3acxoEqmIiSZ0ljmbnnPmBrVACd+AStRpArxQ== --content-type "text/plain" --content-encoding "utf-8" --content "hello there my friend"
+        az storage blob upload --container-name container12 --name myblob --type block --account-name smahastorage1111 --account-key amgY8vqarqsLxK8o27Jbu7CIptQpuKW3y0GEu/vQk8ptJn+fI3acxoEqmIiSZ0ljmbnnPmBrVACd+AStRpArxQ== --content-type "text/plain" --content-encoding "utf-8" --content "hello there my friend"
