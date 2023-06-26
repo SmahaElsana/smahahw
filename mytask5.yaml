@@ -6,7 +6,7 @@ steps:
   - task: AzureCLI@2
     displayName: 'Install Azure CLI'
     inputs:
-      azureSubscription: 'your-subscription' # Replace with your Azure subscription
+      azureSubscription: 'smahacon'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
