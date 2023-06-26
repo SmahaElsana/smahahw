@@ -1,5 +1,5 @@
 pool:
-  name: smahapool
+  vmImage: 'ubuntu-latest'
 
 steps:
   - task: AzureCLI@2
