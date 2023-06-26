@@ -10,14 +10,14 @@ steps:
   - task: AzureCLI@2
     displayName: 'Azure Login'
     inputs:
-      azureSubscription: '13e19292-1bdf-455b-bb42-ff0b0473dc2c'
+      azureSubscription: 'smahacon'
       scriptLocation: 'inlineScript'
       inlineScript: 'az login'
 
   - task: AzureCLI@2
     displayName: 'Create Blob Container'
     inputs:
-      azureSubscription: '13e19292-1bdf-455b-bb42-ff0b0473dc2c'
+      azureSubscription: 'smahacon'
       scriptLocation: 'inlineScript'
       inlineScript: |
         az storage container create --name container1 --account-name smahastorage1111 --account-key amgY8vqarqsLxK8o27Jbu7CIptQpuKW3y0GEu/vQk8ptJn+fI3acxoEqmIiSZ0ljmbnnPmBrVACd+AStRpArxQ==
@@ -25,7 +25,7 @@ steps:
   - task: AzureCLI@2
     displayName: 'Upload Blob'
     inputs:
-      azureSubscription: '13e19292-1bdf-455b-bb42-ff0b0473dc2c'
+      azureSubscription: 'smahacon'
       scriptLocation: 'inlineScript'
       inlineScript: |
         az storage blob upload --container-name container1 --name myblob --type block --account-name smahastorage1111 --account-key amgY8vqarqsLxK8o27Jbu7CIptQpuKW3y0GEu/vQk8ptJn+fI3acxoEqmIiSZ0ljmbnnPmBrVACd+AStRpArxQ== --content-type "text/plain" --content-encoding "utf-8" --content "hello there my friend"
