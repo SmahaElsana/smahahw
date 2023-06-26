@@ -5,8 +5,8 @@ steps:
  
 - task: AzureFileCopy@5
   inputs:
-    SourcePath: 'C:\Users\smaha\OneDrive\Documents\blb.txt'
+    sourcePath: 'C:\Users\smaha\OneDrive\Pictures\pic'
     azureSubscription: 'smahacon'
-    Destination: 'AzureBlob'
+    destination: 'AzureBlob'
     storage: 'smahastorage1111'
-    ContainerName: 'container1'
+    containerName: 'container1'
