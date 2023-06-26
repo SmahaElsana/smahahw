@@ -2,6 +2,16 @@ pool:
   name: smahapool
 
 steps:
+
+  - task: AzureCLI@2
+    displayName: 'Install Azure CLI'
+    inputs:
+      azureSubscription: 'your-subscription' # Replace with your Azure subscription
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
   - task: AzureCLI@2
     displayName: 'Azure Login'
     inputs:
