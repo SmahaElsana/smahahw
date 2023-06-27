@@ -29,7 +29,7 @@
         "location": "[resourceGroup().location]",
         "kind": "StorageV2",
         "sku": {
-            "name": "Premium_LRS",
+            "name": "Standard_LRS",
             "tier": "Premium"
         }
     },
