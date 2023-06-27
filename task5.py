@@ -1,3 +1,4 @@
+# from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient
 
 connection_string = "DefaultEndpointsProtocol=https;AccountName=smahastorage1111;AccountKey=amgY8vqarqsLxK8o27Jbu7CIptQpuKW3y0GEu/vQk8ptJn+fI3acxoEqmIiSZ0ljmbnnPmBrVACd+AStRpArxQ==;EndpointSuffix=core.windows.net"
