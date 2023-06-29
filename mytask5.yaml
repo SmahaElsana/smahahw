@@ -7,7 +7,7 @@ jobs:
 - job: ConnectToVM
   displayName: Connect to Azure VM
   pool:
-    vmImage: 'windows-latest'
+    name: smahapool
 
   steps:
   - task: WinRmToolkit@0
