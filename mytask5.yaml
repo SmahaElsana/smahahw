@@ -7,17 +7,11 @@ pool:
   name: smahapool
 
 steps:
-- task: AzurePowerShell@5
+- task: WinRm@2
   inputs:
-    azureSubscription: 'smahacon'  # Replace with the name of your Azure subscription
-    ScriptType: 'InlineScript'
-    Inline: |
-      $rgName = 'smaha-hw'  # Replace with the name of your resource group
-      $vmName = 'myWinVm'  # Replace with the name of your VM
-
-      # Connect to Azure VM
-      $cred = Get-Credential -UserName 'smahaAdmin' -Message 'Enter the username and password to connect to the VM'
-      $session = New-PSSession -ComputerName $vmName -Credential $cred
-
-      # Disconnect from Azure VM
-      Remove-PSSession -Session $session
+    connectionType: 'WinRM'
+    targets: 'myWinVm'  # Replace with the hostname or IP address of your Windows Server 2012 VM
+    port: '5985'  # Replace with the WinRM port number if different from the default (5985)
+    proto: 'http'  # Replace with 'https' if using WinRM over HTTPS
+    username: 'smahaAdmin'  # Replace with the username for connecting to the Windows Server 2012 VM
+    password: 'smahaAdmin123'  # Replace with the secure password variable or provide the password directly
