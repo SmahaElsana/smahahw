@@ -1,27 +1,23 @@
 trigger:
   branches:
     include:
-      - main
+      - main  # Replace with the branch you want to trigger the pipeline on
 
-jobs:
-- job: ConnectToVM
-  displayName: Connect to Azure VM
-  pool:
-    name: smahapool
+pool:
+  name: smahapool
 
-  steps:
-  - task: WinRmToolkit@0
-    inputs:
-      connectionType: 'WinRMOverHttp'
-      targetMachine: 'myWinVm'
-      username: 'smahaAdmin'
-      password: 'smahaAdmin123'
-      scriptType: 'Inline'
-      inlineScript: |
-        echo "connected succesfully"
-        # Run your commands on the remote VM
-        
-        # For example, execute a PowerShell script
-        Invoke-Command -ScriptBlock {
-          Get-Process
-        }
+steps:
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: 'smahacon'  # Replace with the name of your Azure subscription
+    ScriptType: 'InlineScript'
+    Inline: |
+      $rgName = 'smaha-hw'  # Replace with the name of your resource group
+      $vmName = 'myWinVm'  # Replace with the name of your VM
+
+      # Connect to Azure VM
+      $cred = Get-Credential -UserName 'smahaAdmin' -Message 'Enter the username and password to connect to the VM'
+      $session = New-PSSession -ComputerName $vmName -Credential $cred
+
+      # Disconnect from Azure VM
+      Remove-PSSession -Session $session
