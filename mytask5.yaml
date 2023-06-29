@@ -1,12 +1,27 @@
-pool:
-  name: smahapool
+trigger:
+  branches:
+    include:
+      - main
 
-steps:
- 
-- task: AzureFileCopy@5
-  inputs:
-    sourcePath: 'C:\agent\vsts-agent-win-x64-3.220.5\_work\blb.txt'
-    azureSubscription: 'smahacon'
-    destination: 'AzureBlob'
-    storage: 'smahastorage1111'
-    containerName: 'container1'
+jobs:
+- job: ConnectToVM
+  displayName: Connect to Azure VM
+  pool:
+    vmImage: 'windows-latest'
+
+  steps:
+  - task: WinRmToolkit@0
+    inputs:
+      connectionType: 'WinRMOverHttp'
+      targetMachine: 'myWinVm'
+      username: 'smahaAdmin'
+      password: 'smahaAdmin123'
+      scriptType: 'Inline'
+      inlineScript: |
+        echo "connected succesfully"
+        # Run your commands on the remote VM
+        
+        # For example, execute a PowerShell script
+        Invoke-Command -ScriptBlock {
+          Get-Process
+        }
