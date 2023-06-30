@@ -11,7 +11,7 @@ steps:
   inputs:
     azureSubscription: 'smahacon'  # Replace with the name of your Azure subscription
     ScriptType: 'InlineScript'
-    azurePowerShellVersion: '2.12.3'  # Replace with the desired Azure PowerShell version
+    azurePowerShellVersion: '2.49.0'  # Replace with the desired Azure PowerShell version
     Inline: |
       $rgName = 'smaha-hw'  # Replace with the name of your resource group
       $vmName = 'myWinVm'  # Replace with the name of your VM
