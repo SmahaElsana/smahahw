@@ -1,31 +1,50 @@
+# trigger:
+#   branches:
+#     include:
+#       - main  # Replace with the branch you want to trigger the pipeline on
+
+# pool:
+#   name: smahapool
+
+# steps:
+# - task: RdpOverSsh@1
+#   inputs:
+#     azureSubscriptionEndpoint: 'smahacon'  # Replace with the name of your Azure subscription endpoint
+#     virtualMachineName: 'myWinVm'  # Replace with the name of your Azure VM
+#     username: 'smahaAdmin'  # Replace with the username for the RDP connection
+#     privateKey: '$(PrivateKeyVariable)'  # Replace with the name of the secret variable that holds the private key
+#     sshEndpoint: 'mySSHEndpoint'  # Replace with the name of your SSH endpoint configured in Azure DevOps
+
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'smahacon'  # Replace with the name of your Azure subscription
+#     scriptLocation: 'inlineScript'
+#     inlineScript: |
+#       # Enter your commands to run on the Azure VM
+#       echo "Hello, Azure VM!"
+
 trigger:
   branches:
     include:
       - main  # Replace with the branch you want to trigger the pipeline on
 
-pool:
-  name: smahapool
+jobs:
+- job: RunPythonScript
+  displayName: 'Run Python Script'
+  pool:
+    name: smahapool  # Replace with the name of your self-hosted agent pool
 
-steps:
-- task: AzurePowerShell@5
-  inputs:
-    azureSubscription: 'smahacon'  # Replace with the name of your Azure subscription
-    ScriptType: 'InlineScript'
-    azurePowerShellVersion: '2.49.0'  # Replace with the desired Azure PowerShell version
-    Inline: |
-      $rgName = 'smaha-hw'  # Replace with the name of your resource group
-      $vmName = 'myWinVm'  # Replace with the name of your VM
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'  # Replace with the desired Python version
+      addToPath: true
 
-      # Connect to Azure VM using WinRM
-      $username = 'smahaAdmin'  # Replace with the username for connecting to the Windows Server 2012 VM
-      $password = ConvertTo-SecureString 'smahaAdmin123' -AsPlainText -Force  # Replace 'yourpassword' with the actual password
-      $cred = New-Object System.Management.Automation.PSCredential($username, $password)
-      $session = New-PSSession -ComputerName $vmName -Credential $cred
+  # - script: |
+  #     python -m pip install --upgrade pip
+  #     pip install -r requirements.txt  # Replace with the path to your requirements.txt file
+  #   displayName: 'Install dependencies'
 
-      # Run commands on the VM
-      Invoke-Command -Session $session -ScriptBlock {
-          # Enter your commands to run on the Windows Server 2012 VM
-      }
-
-      # Disconnect from the Azure VM
-      Remove-PSSession -Session $session
+  - script: |
+      python C:\Users\smaha\mcfthw\task5.py  # Replace with the path to your Python file
+    displayName: 'Run Python script'
