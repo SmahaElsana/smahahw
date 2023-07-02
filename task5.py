@@ -13,12 +13,12 @@ blob_service_clientB = BlobServiceClient.from_connection_string(connectionB_stri
 containerB_name = "container1"
 containerB_client = blob_service_clientB.get_container_client(containerB_name)
 
-# for i in range(1, 101):
+for i in range(1, 101):
 
-#     blob_name = f"myfirstblob{i}.txt"
-#     data = "Hello, Azure Blob {i} Storage!"
-#     data_bytes = data.encode("utf-8")
-#     containerA_client.upload_blob(name=blob_name, data=data_bytes)
+    blob_name = f"myfirstblob{i}.txt"
+    data = "Hello, Azure Blob {i} Storage!"
+    data_bytes = data.encode("utf-8")
+    containerA_client.upload_blob(name=blob_name, data=data_bytes)
 
 
 for blob in containerA_client.list_blobs():
