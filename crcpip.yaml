@@ -1,8 +1,0 @@
-jobs:
-- job: RunOnVM
-  displayName: 'Run on Azure VM'
-  pool:
-    vmImage: 'myWinVm'
-  steps:
-  - script: echo 'Hello there'
-    displayName: 'Echo Hello there'
