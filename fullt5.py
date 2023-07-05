@@ -1,5 +1,5 @@
 import winrm
-
+#to deploy atuou**
 # Azure VM details
 vm_name = 'myWinVm'  
 username = 'smahaAdmin'  
